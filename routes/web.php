@@ -29,13 +29,17 @@ Route::get('/fo/edit/{id}','FrontofficeController@edit');
 Route::resource('admin', 'AdminController');
 Route::get('/admin/edit/{id}','AdminController@edit');
 
-Route::get('/voucher', 'VoucherController@index');
-Route::get('/voucher/add', 'VoucherController@add');
+Route::resource('voucher', 'VoucherController');
+Route::post('/voucher/store','VoucherController@store');
+Route::get('/voucher/edit/{id}','VoucherController@edit');
+Route::get('/voucher/view/{id}','VoucherController@view');
 
 Route::get('/redeemed', 'RedeemedController@index');
 
-Route::get('/advertising', 'AdvertisingController@index');
-Route::get('/advertising/add', 'AdvertisingController@add');
+Route::resource('advertising', 'AdvertisingController');
+Route::post('/advertising/store','AdvertisingController@store');
+Route::get('/advertising/edit/{id}','AdvertisingController@edit');
+Route::get('/advertising/view/{id}','AdvertisingController@view');
 
 Auth::routes();
 

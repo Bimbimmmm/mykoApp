@@ -51,67 +51,53 @@
           <th align="center">Number</th>
           <th align="center">Ads Type</th>
           <th align="center">Ads Name</th>
-          <th align="center">Ads Description</th>
+          <th align="center">Ads Caption</th>
           <th align="center">Ads Status</th>
-          <th align="center">Issued By</th>
-          <th align="center">Action</th>
+          <th colspan="3" align="center">Action</th>
         </tr>
       </thead>
       <tbody>
+        @foreach($datas as $data)
         <tr>
-          <th align="center">01</th>
-          <td align="center">Balloom</td>
-          <td align="center">Myko Diamond Ballroom</td>
-          <td align="center">Min 1500 Pax</td>
-          <td align="center">Active</td>
-          <td align="center">Editor 1</td>
+          <th align="center"></th>
+          <td align="center">{{ $data->advertisingtype->name }}</td>
+          <td align="center">{{ $data->name }}</td>
+          <td align="center">{{ $data->caption }}</td>
+          <td align="center">{{ $data->status->name }}</td>
           <td align="center">
-            <button class="button is-selected">
+            <button onclick="window.location='{{ url('advertising/view', array("$data->id")) }}'" class="button is-selected">
               <span class="icon"><i class="fa fa-eye"></i></span>
             </button>
-            <button class="button is-selected">
+          </td>
+          <td align="center">
+            <button onclick="window.location='{{ url('advertising/edit', array("$data->id")) }}'" class="button is-selected">
               <span class="icon"><i class="fa fa-edit"></i></span>
             </button>
+          </td>
+          <td align="center">
+            <form action="{{ route('advertising.destroy', $data->id)}}" method="POST">
+              @csrf
+              @method('DELETE')
             <button class="button is-selected">
               <span class="icon"><i class="fa fa-trash"></i></span>
             </button>
+          </form>
           </td>
         </tr>
-        <tr>
-          <th align="center">02</th>
-          <td align="center">Balloom</td>
-          <td align="center">Myko Diamond Ballroom</td>
-          <td align="center">Min 1500 Pax</td>
-          <td align="center">Active</td>
-          <td align="center">Editor 1</td>
-          <td align="center">
-            <button class="button is-selected">
-              <span class="icon"><i class="fa fa-eye"></i></span>
-            </button>
-            <button class="button is-selected">
-              <span class="icon"><i class="fa fa-edit"></i></span>
-            </button>
-            <button class="button is-selected">
-              <span class="icon"><i class="fa fa-trash"></i></span>
-            </button>
-          </td>
-        </tr>
+        @endforeach
       </tbody>
     </table>
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-      <a class="pagination-previous">Previous</a>
-      <a class="pagination-next">Next page</a>
-      <ul class="pagination-list">
-        <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
-        <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a></li>
-        <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
-        <li><span class="pagination-ellipsis">&hellip;</span></li>
-        <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
-      </ul>
-    </nav>
+  {{ $datas->links('pagination.default') }}
   </div>
 </div>
+<script>
+var table = document.getElementsByTagName('table')[0],
+  rows = table.getElementsByTagName('tr'),
+  text = 'textContent' in document ? 'textContent' : 'innerText';
+
+for (var i = 1, len = rows.length; i < len; i++) {
+  rows[i].children[0][text] = i + '' + rows[i].children[0][text];
+}
+</script>
 
 @endsection

@@ -30,17 +30,16 @@
 
   <div class="box is-add-box">
     <h3 align="center" class="title is-3"><u>Add New Advertising</u></h3>
-
     <div class="field">
+      <form action="/advertising/store" method="POST" enctype="multipart/form-data">
+          @csrf
       <label class="label">Advertising Type</label>
       <div class="control has-icons-left ">
         <div class="select is-fullwidth" >
-          <select>
-            <option>Room Advertising</option>
-            <option>Ballroom Advertising</option>
-            <option>Restaurant Advertising</option>
-            <option>Facilities Advertising</option>
-            <option>Promo Advertising</option>
+          <select  id="advertising_type_id" name="advertising_type_id" required="required">
+            @foreach($datas as $data)
+            <option value = '{{ $data->id }}' >{{ $data->name }}</option>
+            @endforeach
           </select>
         </div>
         <span class="icon is-small is-left">
@@ -54,7 +53,7 @@
       <div class="column">
         <div class="field">
           <div class="control has-icons-left ">
-            <input class="input " type="text" placeholder="Input Advertising Name Here" >
+            <input class="input" type="text"  id="name" name="name" required="required" placeholder="Input Advertising Name Here" >
             <span class="icon is-small is-left">
               <i class="fas fa-signature"></i>
             </span>
@@ -65,7 +64,7 @@
       <div class="column">
         <div class="field">
           <div class="control has-icons-left ">
-            <input class="input " type="text" placeholder="Input Advertising Caption Here" >
+            <input class="input " type="text"  id="caption" name="caption" required="required" placeholder="Input Advertising Caption Here" >
             <span class="icon is-small is-left">
               <i class="fas fa-closed-captioning"></i>
             </span>
@@ -77,7 +76,7 @@
     <div class="field">
       <label class="label">Advertising Desciription</label>
       <div class="control has-icons-left ">
-        <input class="input " type="text" placeholder="Input Advertising Desription Here" >
+        <input class="input " type="text"  id="description" name="description" required="required" placeholder="Input Advertising Desription Here" >
         <span class="icon is-small is-left">
           <i class="fas fa-info-circle"></i>
         </span>
@@ -92,7 +91,7 @@
     <div id ="url" class="field" style="display:none;">
       <label class="label">Advertising URL</label>
       <div class="control has-icons-left ">
-        <input class="input " type="text" placeholder="Input Advertising URL Here" >
+        <input class="input " type="text"  id="url" name="url" placeholder="Input Advertising URL Here" >
         <span class="icon is-small is-left">
           <i class="fas fa-location-arrow"></i>
         </span>
@@ -100,9 +99,25 @@
     </div>
 
     <div class="field">
+      <label class="label">Voucher Status</label>
+      <div class="control has-icons-left ">
+        <div class="select is-fullwidth" >
+          <select id="is_active" name="is_active" required="required">
+            @foreach($datass as $dat)
+            <option value = '{{ $dat->id }}' >{{ $dat->name }}</option>
+            @endforeach
+          </select>
+        </div>
+        <span class="icon is-small is-left">
+          <i class="fas fa-credit-card"></i>
+        </span>
+      </div>
+    </div>
+
+    <div class="field">
       <div id="file-js-example" class="file is-centered is-boxed has-name">
         <label class="file-label">
-          <input class="file-input" type="file" name="resume">
+          <input  id="image" name="image" required="required" class="file-input" type="file">
           <span class="file-cta">
             <span class="file-icon">
               <i class="fas fa-upload"></i>
@@ -120,7 +135,8 @@
 
 
     <div class="is-button-box">
-      <button onclick="window.location='{{ url('advertising') }}'" class="button is-selected is-font">Submit</button>
+      <button type ="submit" class="button is-selected is-font">Submit</button>
+    </form>
       <button onclick="window.location='{{ url('advertising') }}'" class="button has-background-grey-light is-font" >Cancel</button>
     </div>
 

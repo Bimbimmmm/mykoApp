@@ -1,5 +1,6 @@
 @extends('layout')
 <link rel="stylesheet" type="text/css" href= "/css/bulma-divider.min.css">
+<link rel="stylesheet" type="text/css" href= "/css/bulma-switch.min.css">
 @section('content')
 <div class="main-content columns is-fullheight is-padding-top is-font">
   <aside class="column is-2 is-narrow-mobile is-fullheight-columns section is-hidden-mobile has-background-grey-dark">
@@ -30,14 +31,15 @@
   <div class="box is-box">
     <h3 align="center" class="title is-3"><u>Add New Voucher</u></h3>
     <div class="field">
+      <form action="/voucher/store" method="POST" enctype="multipart/form-data">
+          @csrf
       <label class="label">Voucher Type</label>
       <div class="control has-icons-left ">
         <div class="select is-fullwidth" >
-          <select>
-            <option>Room Voucher</option>
-            <option>Food & Beverage Voucher</option>
-            <option>Discount Voucher</option>
-            <option>Cashback Voucher</option>
+          <select id="voucher_type_id" name="voucher_type_id" required="required">
+            @foreach($datas as $data)
+            <option value = '{{ $data->id }}' >{{ $data->name }}</option>
+            @endforeach
           </select>
         </div>
         <span class="icon is-small is-left">
@@ -49,7 +51,7 @@
     <div class="field">
       <label class="label">Voucher Name</label>
       <div class="control has-icons-left ">
-        <input class="input " type="text" placeholder="Input Voucher Name Here" >
+        <input id="name" name="name" required="required" class="input " type="text" placeholder="Input Voucher Name Here" >
         <span class="icon is-small is-left">
           <i class="fas fa-file-signature"></i>
         </span>
@@ -59,7 +61,7 @@
     <div class="field">
       <label class="label">Point Required</label>
       <div class="control has-icons-left ">
-        <input class="input " type="number" placeholder="Input Point Required Here" >
+        <input id="point_required" name="point_required" required="required" class="input " type="number" placeholder="Input Point Required Here" >
         <span class="icon is-small is-left">
           <i class="fas fa-coins"></i>
         </span>
@@ -71,7 +73,7 @@
       <div class="column">
         <div class="field">
           <div class="control has-icons-left ">
-            <input class="input " type="date" >
+            <input id="valid" name="valid" required="required" class="input " type="date" >
             <span class="icon is-small is-left">
               <i class="fas fa-calendar-plus"></i>
             </span>
@@ -82,7 +84,7 @@
       <div class="column">
         <div class="field">
           <div class="control has-icons-left ">
-            <input class="input " type="date" >
+            <input id="expire" name="expire" required="required" class="input " type="date" >
             <span class="icon is-small is-left">
               <i class="fas fa-calendar-times"></i>
             </span>
@@ -94,7 +96,7 @@
     <div class="field">
       <label class="label">Voucher Description</label>
       <div class="control has-icons-left ">
-        <input class="input " type="text" placeholder="Input Voucher Description Here" >
+        <input id="description" name="description" required="required" class="input " type="text" placeholder="Input Voucher Description Here" >
         <span class="icon is-small is-left">
           <i class="fas fa-paragraph"></i>
         </span>
@@ -102,9 +104,25 @@
     </div>
 
     <div class="field">
+      <label class="label">Voucher Status</label>
+      <div class="control has-icons-left ">
+        <div class="select is-fullwidth" >
+          <select id="is_active" name="is_active" required="required">
+            @foreach($datass as $dat)
+            <option value = '{{ $dat->id }}' >{{ $dat->name }}</option>
+            @endforeach
+          </select>
+        </div>
+        <span class="icon is-small is-left">
+          <i class="fas fa-credit-card"></i>
+        </span>
+      </div>
+    </div>
+
+    <div class="field">
       <div id="file-js-example" class="file is-centered is-boxed has-name">
         <label class="file-label">
-          <input class="file-input" type="file" name="resume">
+          <input id="image" name="image" required="required" class="file-input" type="file">
           <span class="file-cta">
             <span class="file-icon">
               <i class="fas fa-upload"></i>
@@ -121,11 +139,10 @@
     </div>
 
     <div class="is-button-box">
-      <button onclick="window.location='{{ url('voucher') }}'" class="button is-selected is-font">Submit</button>
+      <button type ="submit" class="button is-selected is-font">Submit</button>
+    </form>
       <button onclick="window.location='{{ url('voucher') }}'" class="button has-background-grey-light is-font" >Cancel</button>
     </div>
-
-
   </div>
 </div>
 

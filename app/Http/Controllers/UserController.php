@@ -19,7 +19,8 @@ class UserController extends Controller
 
   public function show(){
     $datas = Role::all();
-    return view('user/add',compact('datas'));
+    $datass = Role::where('id', '2')->get();
+    return view('user/add',compact('datas', 'datass'));
   }
 
   public function store(Request $request){

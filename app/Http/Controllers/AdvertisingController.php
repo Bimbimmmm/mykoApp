@@ -12,7 +12,10 @@ class AdvertisingController extends Controller
 {
   public function index(){
     $datas = Advertising::paginate(10);
-    return view('advertising/index',compact('datas'));
+    $datass = Advertising::where('is_active', '1')
+    ->paginate(10)
+    ->appends(request()->query());
+    return view('advertising/index',compact('datas', 'datass'));
   }
 
   public function show(){

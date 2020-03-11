@@ -2,6 +2,22 @@
 <link rel="stylesheet" type="text/css" href= "/css/bulma-divider.min.css">
 @section('content')
 <div class="main-content columns is-fullheight is-padding-top is-font">
+  @if( Auth::user()->role_id  == '4')
+  <aside class="column is-2 is-narrow-mobile is-fullheight-columns section is-hidden-mobile has-background-grey-dark">
+    <ul class="menu-list">
+      <li>
+        <a href="{{ url('voucher') }}" class="has-text-white">
+          <span class="icon"><i class="fa fa-ticket-alt"></i></span> Voucher
+        </a>
+      </li>
+      <li>
+        <a href="{{ url('advertising') }}" class="has-text-white">
+          <span class="icon"><i class="fa fa-bullhorn"></i></span> Advertising
+        </a>
+      </li>
+    </ul>
+  </aside>
+  @else
   <aside class="column is-2 is-narrow-mobile is-fullheight-columns section is-hidden-mobile has-background-grey-dark">
     <ul class="menu-list">
       <li>
@@ -26,6 +42,7 @@
       </li>
     </ul>
   </aside>
+  @endif
 
   <div class="box is-add-box">
     <h3 align="center" class="title is-3"><u>Add New Account</u></h3>
@@ -33,7 +50,8 @@
     <div class="field">
       <form action="/user/store" method="POST">
     @csrf
-      <label class="label">Account Type</label>
+    @if( Auth::user()->role_id  == '1')
+       <label class="label">Account Type</label>
       <div class="control has-icons-left ">
         <div class="select is-fullwidth" >
           <select id="role_id" name="role_id" required="required">
@@ -47,6 +65,22 @@
         </span>
       </div>
     </div>
+    @elseif( Auth::user()->role_id  == '3')
+    <label class="label">Account Type</label>
+   <div class="control has-icons-left ">
+     <div class="select is-fullwidth" >
+       <select id="role_id" name="role_id" required="required">
+         @foreach($datass as $data)
+         <option value = '{{ $data->id }}' >{{ $data->role }}</option>
+         @endforeach
+       </select>
+     </div>
+     <span class="icon is-small is-left">
+       <i class="fas fa-tape"></i>
+     </span>
+   </div>
+ </div>
+    @endif
 
     <label class="label">Personal Information</label>
     <div class="columns">

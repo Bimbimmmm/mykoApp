@@ -12,7 +12,10 @@ class VoucherController extends Controller
 {
   public function index(){
     $datas = Voucher::paginate(10);
-    return view('voucher/index',compact('datas'));
+    $datass = Voucher::where('is_active', '1')
+    ->paginate(10)
+    ->appends(request()->query());
+    return view('voucher/index',compact('datas' , 'datass'));
 
   }
 

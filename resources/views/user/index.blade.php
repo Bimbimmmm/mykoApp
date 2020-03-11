@@ -1,6 +1,22 @@
 @extends('layout')
 @section('content')
 <div class="main-content columns is-fullheight is-padding-top is-font">
+  @if( Auth::user()->role_id  == '4')
+  <aside class="column is-2 is-narrow-mobile is-fullheight-columns section is-hidden-mobile has-background-grey-dark">
+    <ul class="menu-list">
+      <li>
+        <a href="{{ url('voucher') }}" class="has-text-white">
+          <span class="icon"><i class="fa fa-ticket-alt"></i></span> Voucher
+        </a>
+      </li>
+      <li>
+        <a href="{{ url('advertising') }}" class="has-text-white">
+          <span class="icon"><i class="fa fa-bullhorn"></i></span> Advertising
+        </a>
+      </li>
+    </ul>
+  </aside>
+  @else
   <aside class="column is-2 is-narrow-mobile is-fullheight-columns section is-hidden-mobile has-background-grey-dark">
     <ul class="menu-list">
       <li>
@@ -25,15 +41,17 @@
       </li>
     </ul>
   </aside>
+  @endif
 
   <div class="box is-box">
+     @if( Auth::user()->role_id  == '1')
     <div class="box is-button-box">
       <button onclick="window.location='{{ url('user') }}'" class="button is-selected is-font">Member</button>
       <button onclick="window.location='{{ url('editor') }}'" class="button has-background-grey-light is-font" >Editor </button>
       <button onclick="window.location='{{ url('fo') }}'" class="button has-background-grey-light is-font">Front Office</button>
       <button onclick="window.location='{{ url('admin') }}'" class="button has-background-grey-light is-font">Administrator</button>
     </div>
-
+    @endif
     <div class="field has-addons">
       <div class="control is-centered">
         <input class="input" type="text" placeholder="Find Member">

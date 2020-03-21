@@ -118,6 +118,31 @@
       </div>
     </div>
 
+    <label class="label">Place and Date of Birth</label>
+    <div class="columns">
+      <div class="column">
+        <div class="field">
+          <div class="control has-icons-left ">
+            <input id="place_of_birth" name="place_of_birth" required="required" class="input " type="text" placeholder="Your Place of Birth Here" >
+            <span class="icon is-small is-left">
+              <i class="fas fa-map-pin"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+     <div class="is-divider-vertical" data-content="AND"></div>
+      <div class="column">
+        <div class="field">
+          <div class="control has-icons-left ">
+            <input  id="date_of_birth" name="date_of_birth" required="required" class="input " type="date" placeholder="Your Date of Birth Here" >
+            <span class="icon is-small is-left">
+              <i class="fas fa-calendar-plus"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <label class="label">Personal Contact</label>
     <div class="columns">
       <div class="column">

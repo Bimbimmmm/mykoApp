@@ -44,7 +44,7 @@
   </aside>
 @endif
   <div class="box is-add-box">
-    <h3 align="center" class="title is-3"><u>Add New Account</u></h3>
+    <h3 align="center" class="title is-3"><u>Edit Editor Account</u></h3>
     @foreach($data as $dat)
     <div class="field">
       <form action="{{ route('editor.update',$dat->id) }}" method="POST">
@@ -99,6 +99,31 @@
       </div>
     </div>
 
+    <label class="label">Place and Date of Birth</label>
+    <div class="columns">
+      <div class="column">
+        <div class="field">
+          <div class="control has-icons-left ">
+            <input id="place_of_birth" name="place_of_birth" value = '{{ $dat->place_of_birth }}' class="input " type="text" placeholder="Your Place of Birth Here" >
+            <span class="icon is-small is-left">
+              <i class="fas fa-map-pin"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+     <div class="is-divider-vertical" data-content="AND"></div>
+      <div class="column">
+        <div class="field">
+          <div class="control has-icons-left ">
+            <input  id="date_of_birth" name="date_of_birth" value = '{{ $dat->date_of_birth }}' class="input " type="date" placeholder="Your Date of Birth Here" >
+            <span class="icon is-small is-left">
+              <i class="fas fa-calendar-plus"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <label class="label">Personal Contact</label>
     <div class="columns">
       <div class="column">
@@ -129,7 +154,7 @@
       <div class="column">
         <div class="field">
           <div class="control has-icons-left ">
-            <input id="password" name="password" class="input" type="password" placeholder="Your Password Here" >
+            <input id="password" name="password" class="input" type="password" placeholder="Your Password Here" required="required">
             <span class="icon is-small is-left">
               <i class="fas fa-key"></i>
             </span>
@@ -140,7 +165,7 @@
       <div class="column">
         <div class="field">
           <div class="control has-icons-left ">
-            <input  id="password-confirm" class="input " type="password" placeholder="Confirm Your Password Here" name="password_confirmation"   autocomplete="new-password">
+            <input  id="password-confirm" class="input " type="password" placeholder="Confirm Your Password Here" name="password_confirmation"   autocomplete="new-password" required="required">
             <span class="icon is-small is-left">
               <i class="fas fa-lock"></i>
             </span>

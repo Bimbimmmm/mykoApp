@@ -1,4 +1,6 @@
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+<p align="center"><img src="https://mykohotel.com/wp-content/uploads/2017/08/Myko-Hotel-Convention-Center-Makassar-Hotel-Recommendation-by-MNC-YouTube-Google-Chrome-2017-08-31-16.49.06.png" width="400"></p>
+
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
@@ -7,73 +9,30 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## About Laravel
+## Apa itu Myko App?
+Myko App adalah sebuah aplikasi berbasis web yang dijalankan menggunakan framework Laravel versi 7.0 dan menggunakan database PostgreSQL versi 12. Aplikasi Myko App ini khusus dipergunakan oleh staff internal Myko Hotel dan tidak digunakan oleh member
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-"# mykoApp" 
+## Bagaimana cara menginstall/menggunakan Myko App pada server lokal?
+- pull atau download repository github ini.
+- install semua perlengkapan yang dibutuhkan seperti composer, dan pgadmin4 (jika belum ada)
+- buka command line
+- arahkan ke folder Myko App yang telah didownload tadi
+- ketikkan perintah "php artisan serve" pada terminal
+- buka browser (disarankan menggunakan google chrome)
+- ketikkan alamat localhost dan tambahkan port 8000 (127.0.0.1:8000)
+- anda akan diarahkan ke halaman login
+- jalankan pgadmin dan buat database dengan nama "myko_app"
+- buka project Myko App di text editor (Atom, Visual code, Sublime)
+- buka file .env dan ubah bagian DB_USERNAME dan DB_PASSWORD sesuai dengan username dan password dari pgadmin anda
+- buka terminal baru dan arahkan ke folder myko app yang telah didowload tadi
+- ketikkan perintah "php artisan migrate"
+- cek di pgadmin4 apakah tabel telah berhasil dibuat
+- jika telah berhasil maka langkah selanjutnya adalah melakukan seeder ke database yang telah dibuat tadi
+- masuk ke folder seeds lalu buka folder UsersSeeder.php
+- isi data yang dibutuhkan untuk login sebagai admin pada public function run()
+- buka terminal dan ketikkan "composer dump-autoload"
+- lalu ketikkan "php artisan db:seed"
+- jika berhasil maka kembali ke halaman login
+- masukkan email dan password yang telah dimasukkan tadi untuk login sebagai admin
+- TADAAAAAA!!!!!! anda telah berhasil login
+- silahkan menunggu atau membuat aplikasi myko_app_mobile untuk digunakan oleh member
